@@ -1,0 +1,72 @@
+/* One physical page geometry for both preview and printing. */
+.reference-sheet { box-sizing:border-box; width:210mm; height:297mm; flex:none; padding:3mm; background:white; color:#111; border:1px solid #777; font:2.65mm/1.25 Arial,'Noto Sans Thai',sans-serif; }
+.reference-sheet * { box-sizing:border-box; }
+.ref-header { height:25mm; display:grid; grid-template-columns:47mm 1fr; align-items:center; border-bottom:.25mm solid #555; gap:2mm; }
+.ref-logo { width:44mm; height:24mm; background-image:url('/quotation-reference.png'); background-size:479.545% 1242.5%; background-position:4.192% 1.021%; }
+.ref-header h2 { font:bold italic 7.6mm/1 Arial,sans-serif; color:#e00000; letter-spacing:-.3mm; margin:0 0 3mm; white-space:nowrap; }
+.ref-header p { font-size:2.65mm; font-weight:600; margin:1.2mm 0; white-space:nowrap; }
+.reference-sheet>h1 { height:10mm; margin:0; text-align:center; font:bold italic 8mm/10mm Georgia,serif; }
+.ref-meta { height:31mm; display:grid; grid-template-columns:56.3% 43.7%; border:.2mm solid #444; }
+.ref-recipient { display:grid; grid-template-columns:8.5mm 1fr; grid-template-rows:20mm 5.5mm 5.1mm; min-width:0; }
+.ref-recipient>* { margin:0; padding:1mm; border-bottom:.15mm solid #aaa; }
+.ref-recipient>i { border-right:.15mm solid #555; font-weight:bold; }
+.ref-recipient>div { line-height:1.65; }
+.ref-recipient p { margin:0; font-weight:600; white-space:pre-wrap; overflow-wrap:break-word; }
+.ref-doc { display:grid; grid-template-rows:repeat(6,1fr); border-left:.2mm solid #444; }
+.ref-doc>div { display:grid; grid-template-columns:23.5mm 1fr; min-height:0; border-bottom:.15mm solid #aaa; }
+.ref-doc i { padding:.6mm 1.4mm; border-right:.2mm solid #555; font-weight:700; }
+.ref-doc span { display:flex; align-items:center; justify-content:center; text-align:center; padding:.4mm; font-size:2.6mm; }
+.ref-doc>div:first-child span { font-weight:bold; font-size:2.45mm; }
+.ref-items { height:167mm; border-left:.2mm solid #444; border-right:.2mm solid #444; }
+.ref-columns { display:grid; grid-template-columns:4.2% 27.1% 10.2% 9.6% 8.5% 8.3% 7.1% 8.1% 5.9% 11%; }
+.ref-columns>* { min-width:0; text-align:center; border-right:.15mm solid #555; padding:1mm .6mm; overflow-wrap:break-word; }
+.ref-columns>*:last-child { border-right:0; }
+.ref-column-head { height:5.5mm; border-bottom:.2mm solid #555; font-style:italic; font-size:2.55mm; }
+.ref-column-head>b { white-space:nowrap; }
+.ref-item-values { height:5.5mm; font-size:2.65mm; }
+.ref-item-values>*:nth-child(2) { text-align:left; padding-left:1.4mm; }
+.ref-parts-drawing { height:156mm; display:grid; grid-template-columns:4.2% 27.1% 68.7%; position:relative; }
+.ref-index-lines { border-right:.15mm solid #555; background:repeating-linear-gradient(to bottom,transparent 0,transparent 4.48mm,#ccc 4.5mm,transparent 4.6mm); }
+.ref-bom { border-right:.2mm solid #444; display:grid; grid-auto-rows:4.55mm; align-content:start; font-size:2.5mm; }
+.ref-bom>* { margin:0; border-bottom:.15mm solid #ccc; padding:.6mm 1.3mm; white-space:nowrap; letter-spacing:-.08mm; font-stretch:condensed; }
+.ref-drawing { margin-top:8mm; margin-left:1.5mm; margin-right:1.5mm; margin-bottom:2mm; position:relative; min-width:0; overflow:hidden; background:#fff; }
+.ref-drawing-empty { position:absolute; inset:0; display:grid; place-content:center; gap:2mm; text-align:center; color:#d1d5d9; background:linear-gradient(135deg,transparent 49.9%,#f1f1f1 50%,transparent 50.1%); }
+.ref-drawing-empty b { font-size:4mm; letter-spacing:.6mm; }
+.ref-drawing-empty span { font-size:2.4mm; color:#aeb5bc; }
+.ref-drawing .drawing-uploaded-image { padding:0; border:0; outline:1px dashed transparent; }
+.ref-drawing .drawing-uploaded-image:hover { outline-color:#1769aa; }
+.ref-drawing-title { position:absolute; z-index:3; right:0; bottom:0; width:56mm; min-height:27mm; border:.2mm solid #555; background:#fff; display:grid; grid-template-rows:8mm 10mm 8mm; font-size:2.3mm; }
+.ref-drawing-title>b { display:flex; align-items:center; padding:1.5mm; border-bottom:.15mm solid #777; font-size:3.4mm; }
+.ref-drawing-title>div { display:grid; padding:1mm 1.5mm; border-bottom:.15mm solid #777; }
+.ref-drawing-title>div:last-child { grid-template-columns:1fr 15mm; border-bottom:0; }
+.ref-drawing-title strong { font-size:3.2mm; font-weight:400; }
+.ref-payment { height:18.6mm; display:grid; grid-template-columns:31.3% 36.6% 32.1%; border:.2mm solid #444; font-size:2.6mm; background:repeating-linear-gradient(to bottom,white 0,white 4.5mm,#ccc 4.6mm,white 4.65mm); }
+.ref-payment>div { border-right:.2mm solid #555; }
+.ref-payment>div:last-child { border-right:0; }
+.ref-payment>div>b { display:block; height:4.65mm; padding:.6mm 2mm; }
+.ref-payment p { display:flex; align-items:center; height:4.65mm; margin:0; padding:0 1mm 0 5mm; font-weight:bold; }
+.ref-payment p>b { margin-left:auto; width:25mm; }
+.ref-totals { height:15.3mm; display:grid; grid-template-columns:79% 10.5% 10.5%; grid-template-rows:repeat(3,1fr); border-left:.2mm solid #444; }
+.ref-totals>* { padding:.7mm 1mm; border-right:.2mm solid #555; border-bottom:.2mm solid #555; min-width:0; }
+.ref-totals>div { font-size:2.3mm; font-weight:600; text-align:center; white-space:nowrap; }
+.ref-totals>i { font-weight:bold; }
+.ref-totals>b { text-align:right; }
+.ref-inwords { display:grid; grid-template-columns:22% 1fr; }
+.ref-inwords>span { border-right:.2mm solid #555; }
+.ref-footer { height:24mm; position:relative; display:flex; justify-content:space-between; text-align:center; padding:2mm 5mm 0; }
+.ref-footer>div { width:59mm; display:flex; flex-direction:column; align-items:center; gap:1mm; }
+.ref-footer>div>b:first-child { font-style:italic; font-size:3.2mm; }
+.ref-signature { font:italic 5.6mm/7mm 'Brush Script MT','Segoe Script',cursive; width:100%; border-bottom:.2mm solid #555; white-space:nowrap; }
+.ref-footer .ref-customer-sign { margin-top:7mm; padding-top:1mm; border-top:.2mm solid #555; width:50mm; }
+.ref-footer .ref-customer-sign>b { font-size:2.6mm!important; }
+.ref-footer p { position:absolute; right:2mm; bottom:0; margin:0; font-weight:bold; font-size:2.5mm; }
+@media screen {
+  .parts-workspace .quote-preview-panel { width:490px; max-width:100%; overflow:auto; }
+  .reference-sheet { zoom:.61; }
+}
+@media screen and (max-width:680px) { .reference-sheet { zoom:.42; } }
+@media print {
+  body:has(.reference-sheet) .quote-preview-panel { position:static!important; }
+  .reference-sheet { zoom:1!important; width:210mm!important; height:297mm!important; margin:0!important; border:0; break-inside:avoid; }
+  .ref-drawing .drawing-uploaded-image { outline:0; }
+}

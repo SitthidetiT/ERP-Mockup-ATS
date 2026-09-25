@@ -1,0 +1,13 @@
+export type Role = "Executive" | "System Admin" | "Sales" | "Engineer" | "Drafting" | "Production Planner" | "Purchasing" | "Store / Warehouse" | "Production Supervisor" | "Production Operator" | "QC" | "Packing" | "Shipping" | "HR";
+export type Status = "DRAFT" | "INTERNAL REVIEW" | "APPROVED" | "SENT" | "WAITING CUSTOMER" | "ACCEPTED" | "CHANGE REQUESTED" | "REJECTED" | "ENGINEERING" | "DRAFTING" | "PLANNING" | "PURCHASING" | "PRODUCTION" | "QC" | "REWORK" | "PACKING" | "DELIVERED" | "COMPLETED" | "OVERDUE" | "FAILED";
+export interface Customer { id: string; code: string; name: string; province: string; contact: string; email: string; phone: string; status: "Active" | "Inactive"; credit: string; }
+export interface QuoteItem { id: string; partName: string; partNo: string; material: string; qty: number; unit: string; unitPrice: number; discount: number; size?: string; parts?: string[]; drawingForm?: string; finishing?: string; }
+export interface QuotationDocument { quotationNo: string; revision: string; date: string; validity: string; payment: string; leadTime: string; contact: string; project: string; branch: string; attn: string; cc: string; address: string; reference: string; drawingNo: string; drawingRev: string; deposit: string; delivery: string; credit: string; approvedBy: string; approvedRole: string; thaiNote: string; englishNote: string; amountWords: string; }
+export interface QuotationImageBox { x: number; y: number; width: number; height: number; }
+export interface Quotation { id: string; no: string; rev: number; customerId: string; customer: string; project: string; status: Status; created: string; validUntil: string; sales: string; items: QuoteItem[]; payment: string; leadTime: string; document?: QuotationDocument; drawingImage?: string | null; drawingImageBox?: QuotationImageBox; }
+export interface Job { id: string; no: string; quotationId: string; customer: string; project: string; status: Status; due: string; progress: number; priority: "Normal" | "High" | "Critical"; }
+export interface Activity { id: string; at: string; user: string; role: string; action: string; entity: string; }
+export interface Notification { id: string; title: string; detail: string; type: string; read: boolean; }
+export interface InventoryItem { id: string; partNo: string; name: string; category: string; unit: string; currentStock: number; minStock: number; location: string; }
+export interface StoreLocation { id: string; code: string; name: string; type: string; }
+export interface StockMovement { id: string; date: string; itemId: string; itemName: string; type: "IN" | "OUT" | "TRANSFER" | "ADJUST"; qty: number; reference: string; user: string; }

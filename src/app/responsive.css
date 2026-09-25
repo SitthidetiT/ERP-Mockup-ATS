@@ -1,0 +1,93 @@
+/* Presentation-safe responsive overrides: desktop-first ERP tables retain a horizontal scroll on compact screens. */
+@media (max-width: 1280px) {
+  .sidebar { width: 208px; }
+  .main { width: calc(100% - 208px); }
+  .topbar { padding: 0 18px; gap: 14px; }
+  .content { padding: 23px; }
+  .global-search { max-width: 310px; }
+  .top-actions { gap: 7px; }
+  .top-actions .quick { padding: 8px 9px; }
+  .dashgrid { grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); }
+}
+
+@media (max-width: 1100px) {
+  .sidebar { width: 64px; }
+  .sidebar .brand > div:not(.brandmark), .sidebar nav span, .sidebar .collapse span { display: none; }
+  .sidebar nav a { justify-content: center; padding: 10px; }
+  .main { width: calc(100% - 64px); }
+  .sidebar.collapsed + .main { width: calc(100% - 64px); }
+  .topbar { min-width: 0; }
+  .global-search { max-width: 270px; }
+  .top-actions select { max-width: 120px; }
+  .dashgrid { grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); }
+  .kpis { grid-template-columns: repeat(4, minmax(145px, 1fr)); overflow-x: auto; padding-bottom: 3px; }
+  .kpi { min-width: 145px; }
+}
+
+@media (max-width: 860px) {
+  .content { padding: 18px; }
+  .topbar { height: auto; min-height: 64px; flex-wrap: wrap; padding: 10px 16px; }
+  .crumb { flex: 1; }
+  .global-search { order: 3; flex-basis: 100%; max-width: none; }
+  .top-actions { margin-left: auto; }
+  .top-actions .quick:first-child { display: none; }
+  .dashgrid, .builder-layout, .detail-grid, .module-grid { grid-template-columns: minmax(0, 1fr); }
+  .action-grid { grid-template-columns: 1fr; }
+  .full { grid-column: auto; }
+  .totals { position: static; }
+  .kanban { grid-template-columns: repeat(5, minmax(215px, 1fr)); }
+  .a4 { max-width: 100%; padding: 38px 34px; overflow-x: auto; }
+  .a4 table { min-width: 560px; }
+  .formgrid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .sidebar { position: fixed; inset: 0 auto 0 -250px; width: 236px; box-shadow: 12px 0 30px rgba(4, 21, 39, .26); }
+  .sidebar.mobile-open { left: 0; }
+  .sidebar .brand > div:not(.brandmark), .sidebar nav span, .sidebar .collapse span { display: block; }
+  .sidebar nav a { justify-content: flex-start; }
+  .closemobile, .menu { display: grid; }
+  .main, .sidebar.collapsed + .main { width: 100%; }
+  .content { padding: 16px 12px 82px; }
+  .topbar { padding: 9px 12px; gap: 8px; }
+  .crumb { font-size: 11px; }
+  .crumb span { display: none; }
+  .top-actions .quick, .top-actions select { display: none; }
+  .top-actions .bell { display: grid; }
+  .page-header { align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+  .page-header h1 { font-size: 19px; line-height: 1.3; }
+  .page-header p { font-size: 11px; }
+  .head-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .kpis { grid-template-columns: repeat(2, minmax(145px, 1fr)); gap: 9px; overflow: visible; }
+  .kpi { min-width: 0; padding: 12px; }
+  .kpi strong { font-size: 17px; white-space: nowrap; }
+  .panel-head { padding: 14px 14px 8px; }
+  .toolbar { align-items: stretch; }
+  .toolbar label { width: 100%; }
+  .toolbar span { margin-left: 0; }
+  .table-panel { border-radius: 6px; -webkit-overflow-scrolling: touch; }
+  table { min-width: 650px; }
+  .formgrid, .formgrid.three { grid-template-columns: 1fr; }
+  .item-grid { margin: 0 -5px; }
+  .item-head, .item-row { min-width: 710px; }
+  .a4 { padding: 24px 18px; border: 0; box-shadow: none; }
+  .a4 header { min-width: 510px; }
+  .a4info { min-width: 510px; }
+  .a4total { margin-left: 0; width: 100%; min-width: 510px; }
+  .guide { left: 12px; right: 12px; bottom: 70px; width: auto; max-height: calc(100vh - 100px); overflow: auto; }
+  .guide > a { min-height: 42px; }
+  .present-tools { left: 12px; right: 12px; bottom: 11px; justify-content: space-between; }
+  .present-tools button { flex: 1; justify-content: center; }
+  .modal { max-height: calc(100vh - 28px); overflow: auto; padding: 16px; }
+  .access-denied { margin-top: 5px; }
+}
+
+@media print {
+  .sidebar, .topbar, .present-tools, .guide, .page-header, .tabs { display: none !important; }
+  .main, .content { width: 100% !important; padding: 0 !important; }
+  body, .shell, .main { background: #fff !important; }
+  .a4 { width: 210mm; min-height: 297mm; margin: 0; border: 0; box-shadow: none; page-break-inside: avoid; }
+  .a4 table { min-width: 0; width: 100%; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+}

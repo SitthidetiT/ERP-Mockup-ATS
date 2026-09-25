@@ -1,0 +1,16 @@
+.saved-quotation-layout { display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:18px; align-items:start; }
+.saved-quotation-document { min-width:0; display:grid; justify-items:center; gap:10px; overflow:auto; padding:14px; border:1px solid #e1e6ec; border-radius:7px; background:#e9edf1; }
+.saved-document-toolbar { width:100%; display:flex; align-items:center; justify-content:space-between; padding:0 2px 4px; }
+.saved-document-toolbar b,.saved-document-toolbar span { display:block; }
+.saved-document-toolbar span { margin-top:3px; color:#6e7a8c; font-size:12px; }
+.saved-quotation-sidebar { position:sticky; top:16px; }
+.quotation-standalone-preview { display:grid; justify-content:center; overflow:auto; padding:18px; border:1px solid #dfe5eb; background:#e8edf1; }
+@media screen and (min-width:681px) {
+  .saved-quotation-document .reference-sheet,.quotation-standalone-preview .reference-sheet { zoom:.72; }
+}
+@media(max-width:920px) { .saved-quotation-layout { grid-template-columns:1fr; } .saved-quotation-sidebar { position:static; } }
+@media(max-width:680px) { .saved-quote-header { flex-direction:column; } .saved-quote-header .head-actions { width:100%; flex-wrap:wrap; } .saved-quotation-document,.quotation-standalone-preview { justify-content:start; padding:10px; } }
+@media print {
+  .saved-quote-header,.saved-document-toolbar,.saved-quotation-sidebar { display:none!important; }
+  .saved-quotation-layout,.saved-quotation-document,.quotation-standalone-preview { display:block!important; width:210mm!important; max-width:210mm!important; margin:0!important; padding:0!important; border:0!important; overflow:visible!important; background:#fff!important; }
+}

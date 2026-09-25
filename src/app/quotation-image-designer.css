@@ -1,0 +1,36 @@
+.hidden-file-input { display: none; }
+.image-control-panel { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.image-control-panel h3 { margin: 0 0 4px; }
+.image-control-panel p { margin: 0; color: #6e7a8c; font-size: 12px; }
+.image-control-actions { display: flex; gap: 8px; }
+.danger-button { color: #a72b38; }
+.form-help { margin: -4px 0 14px; color: #6e7a8c; font-size: 12px; }
+.form-group-title { margin-top: 22px !important; padding-top: 18px; border-top: 1px solid #e3e8ee; }
+.quote-detail-form .wide-field { grid-column: span 2; }
+.drawing-fields { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 13px; padding-top: 4px; }
+.drawing-fields label { display: grid; gap: 5px; font-size: 12px; font-weight: 600; }
+.drawing-fields input { width: 100%; padding: 8px; border: 1px solid #dce2e9; border-radius: 4px; background: #fff; }
+.image-sliders { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 10px 12px; background: #f5f9fc; border: 1px solid #d7e5ef; border-radius: 5px; }
+.image-sliders label { display: grid; grid-template-columns: auto 1fr 38px; align-items: center; gap: 9px; font-size: 12px; font-weight: 600; }
+.image-sliders input { width: 100%; accent-color: #1769aa; }
+.image-sliders output { text-align: right; font: 12px "DM Mono", monospace; color: #1769aa; }
+.reset-image-button { grid-column: 1 / -1; justify-self: start; }
+.drawing-placeholder { position: relative; z-index: 0; }
+.drawing-uploaded-image { position: absolute; z-index: 2; display: grid; place-items: center; padding: 3px; background: #fff; border: 1px dashed #1769aa; cursor: grab; touch-action: none; user-select: none; }
+.drawing-uploaded-image:active { cursor: grabbing; }
+.drawing-uploaded-image img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.drawing-uploaded-image i { position: absolute; top: -20px; left: 0; padding: 3px 5px; background: #1769aa; color: #fff; font-size: 8px; font-style: normal; white-space: nowrap; opacity: 0; transition: opacity .15s; }
+.drawing-uploaded-image:hover i { opacity: 1; }
+
+@media (max-width: 680px) {
+  .image-control-panel { grid-template-columns: 1fr; }
+  .image-control-actions { justify-content: flex-start; }
+  .image-sliders { grid-template-columns: 1fr; }
+  .quote-detail-form .wide-field { grid-column: auto; }
+  .drawing-fields { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .drawing-uploaded-image { border: 0; padding: 0; }
+  .drawing-uploaded-image i { display: none; }
+}
