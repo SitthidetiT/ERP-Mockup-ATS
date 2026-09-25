@@ -6,7 +6,7 @@ import { useDemo } from "@/stores/demo-store";
 import { Header, Badge } from "@/components/layout/erp-app";
 
 export function InventoryItems() {
-  const { inventoryItems } = useDemo();
+  const { inventoryItems, postStock, reserveStock, transferStock } = useDemo();
   const [query, setQuery] = useState("");
   
   const list = inventoryItems.filter(i => 
@@ -16,9 +16,9 @@ export function InventoryItems() {
   return (
     <>
       <Header 
-        title="Stock Items" 
-        subtitle="Master item list and current stock availability" 
-        action={<button className="primary"><Plus size={17}/> Add new item</button>}
+        title="รายการสินค้าใน Stock"
+        subtitle="Master Item และจำนวนคงเหลือที่พร้อมใช้งาน"
+        action={<button className="primary"><Plus size={17}/> เพิ่ม Item</button>}
       />
       <div className="toolbar">
         <label>
@@ -26,22 +26,22 @@ export function InventoryItems() {
           <input 
             value={query} 
             onChange={e => setQuery(e.target.value)} 
-            placeholder="Search part number or name"
+            placeholder="ค้นหา Part Number หรือชื่อสินค้า"
           />
         </label>
-        <button>Category <ChevronDown size={15}/></button>
-        <button>Store <ChevronDown size={15}/></button>
-        <span>{list.length} records</span>
+        <button>ประเภท <ChevronDown size={15}/></button>
+        <button>คลัง <ChevronDown size={15}/></button>
+        <span>{list.length} รายการ</span>
       </div>
       <div className="panel table-panel">
         <table>
           <thead>
             <tr>
-              <th>Part / Description</th>
-              <th>Category</th>
-              <th>Store Location</th>
-              <th>On Hand</th>
-              <th>Status</th>
+              <th>Part / รายละเอียด</th>
+              <th>ประเภท</th>
+              <th>ตำแหน่งจัดเก็บ</th>
+              <th>คงเหลือ / จอง / ใช้ได้</th>
+              <th>สถานะ</th>
               <th/>
             </tr>
           </thead>
@@ -52,18 +52,18 @@ export function InventoryItems() {
               return (
                 <tr key={i.id}>
                   <td>
-                    <Link className="table-main" href="#">
+                    <span className="table-main">
                       {i.name}
-                      <small>{i.partNo}</small>
-                    </Link>
+                      <small>{i.partNo}{i.customerPartNo ? ` · Customer ${i.customerPartNo}` : ""} · {i.lotNo??"No lot"}</small>
+                    </span>
                   </td>
                   <td>{i.category}</td>
                   <td>{i.location}</td>
                   <td>
-                    <b>{i.currentStock}</b> <small>{i.unit}</small>
+                    <b>{i.currentStock}</b> / {i.reservedStock??0} / {i.currentStock-(i.reservedStock??0)} <small>{i.unit}</small>
                   </td>
                   <td><Badge status={status} /> {statusText !== "In Stock" && <small className="muted">Min: {i.minStock}</small>}</td>
-                  <td><Link className="text-action" href="#">Adjust</Link></td>
+                  <td><div className="head-actions"><button className="text-action" onClick={()=>reserveStock(i.id,1)}>จอง</button><button className="text-action" onClick={()=>postStock(i.id,"ISSUE",1)}>เบิก</button><button className="text-action" onClick={()=>postStock(i.id,"RETURN",1)}>คืน</button><button className="text-action" onClick={()=>postStock(i.id,"ADJUST",1)}>+ ปรับยอด</button><button className="text-action" onClick={()=>transferStock(i.id,i.location.startsWith("Store 1")?"Store 2 - Parts & Components":"Store 1 - Raw Materials")}>โอนคลัง</button></div></td>
                 </tr>
               )
             })}
@@ -80,17 +80,17 @@ export function InventoryStores() {
   return (
     <>
       <Header 
-        title="Stores & Locations" 
-        subtitle="Manage physical storage locations and zones" 
-        action={<button className="primary"><Plus size={17}/> Add store</button>}
+        title="คลังและตำแหน่งจัดเก็บ"
+        subtitle="จัดการคลังสินค้า พื้นที่ และ Zone จัดเก็บ"
+        action={<button className="primary"><Plus size={17}/> เพิ่มคลัง</button>}
       />
       <div className="panel table-panel">
         <table>
           <thead>
             <tr>
-              <th>Store Name</th>
-              <th>Store Type</th>
-              <th>Code</th>
+              <th>ชื่อคลัง</th>
+              <th>ประเภทคลัง</th>
+              <th>รหัส</th>
               <th/>
             </tr>
           </thead>
@@ -98,13 +98,13 @@ export function InventoryStores() {
             {stores.map(s => (
               <tr key={s.id}>
                 <td>
-                  <Link className="table-main" href="#">
-                    {s.name}
-                  </Link>
+                    <span className="table-main">
+                      {s.name}
+                    </span>
                 </td>
                 <td>{s.type}</td>
                 <td>{s.code}</td>
-                <td><Link className="text-action" href="#">View items</Link></td>
+                <td><span className="text-action">ตั้งค่าแล้ว</span></td>
               </tr>
             ))}
           </tbody>
@@ -120,20 +120,20 @@ export function StockMovements() {
   return (
     <>
       <Header 
-        title="Stock Movements" 
-        subtitle="Audit log of all IN, OUT, and TRANSFER operations" 
-        action={<button className="primary">Export CSV</button>}
+        title="ความเคลื่อนไหว Stock"
+        subtitle="ประวัติรับเข้า จ่ายออก และโอนคลังทั้งหมด"
+        action={<button className="primary">ส่งออก CSV</button>}
       />
       <div className="panel table-panel">
         <table>
           <thead>
             <tr>
-              <th>Date / Time</th>
+              <th>วันที่ / เวลา</th>
               <th>Item</th>
-              <th>Type</th>
-              <th>Qty</th>
-              <th>Reference</th>
-              <th>User</th>
+              <th>ประเภท</th>
+              <th>จำนวน</th>
+              <th>เอกสารอ้างอิง</th>
+              <th>ผู้ทำรายการ</th>
             </tr>
           </thead>
           <tbody>
@@ -141,9 +141,10 @@ export function StockMovements() {
               <tr key={m.id}>
                 <td>{m.date}</td>
                 <td>
-                  <Link className="table-main" href="#">
+                  <span className="table-main">
                     {m.itemName}
-                  </Link>
+                    <small>{m.lotNo??"No lot"}{m.fromLocation?` · ${m.fromLocation} → ${m.toLocation}`:""}</small>
+                  </span>
                 </td>
                 <td><Badge status={m.type === "IN" ? "COMPLETED" : m.type === "OUT" ? "ENGINEERING" : "INTERNAL_REVIEW"} /> {m.type}</td>
                 <td>
