@@ -12,9 +12,22 @@ import "./quotation-image-designer.css";
 import "./quotation-print.css";
 import "./quotation-reference.css";
 import "./saved-quotation.css";
+import "./feedback.css";
+import { Providers } from "./providers";
 
-export const metadata: Metadata = { title: "AUTO-TECHSYSTEM | ERP", description: "Industrial ERP demonstration" };
+export const metadata: Metadata = {
+  title: "AUTO-TECHSYSTEM | ERP",
+  description: "Industrial ERP demonstration",
+};
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="th"><body>{children}</body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="th">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
 }

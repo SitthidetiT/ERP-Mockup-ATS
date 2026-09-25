@@ -106,6 +106,11 @@ export const seedJobCosts: JobCost[] = [
  {id:"jc3",jobId:"j1",category:"MACHINE",description:"Machine hours",estimated:9100,actual:10200},
  {id:"jc4",jobId:"j1",category:"OUTSOURCE",description:"Hardening and coating",estimated:12800,actual:13600},
  {id:"jc5",jobId:"j1",category:"REWORK",description:"Drilling rework",estimated:0,actual:1800}
+ ,{id:"jc6",jobId:"j2",category:"MATERIAL",description:"Steel and coating materials",estimated:72000,actual:74800}
+ ,{id:"jc7",jobId:"j2",category:"LABOUR",description:"ค่าแรงผลิตก่อน QC",estimated:18000,actual:19200}
+ ,{id:"jc8",jobId:"j2",category:"MACHINE",description:"Laser and welding machine",estimated:14500,actual:15100}
+ ,{id:"jc9",jobId:"j2",category:"OUTSOURCE",description:"Powder coating",estimated:22000,actual:23800}
+ ,{id:"jc10",jobId:"j2",category:"REWORK",description:"ค่าแรงแก้ไข QC Fail (2× ค่าแรงจริง 19,200)",estimated:0,actual:38400}
 ];
 export const seedReworkOrders: ReworkOrder[] = [];
 export const seedCustomerComplaints: CustomerComplaint[] = [
